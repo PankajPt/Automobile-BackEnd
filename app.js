@@ -1,5 +1,6 @@
 import express from "express";
 import userRouter from "./src/routes/user.routes.js";
+import cors from 'cors'
 
 const app = express()
 const options = {
