@@ -15,7 +15,7 @@ const submitEnquiryForm = asyncHandler(async (req, res) => {
             .json(new ApiError(400, 'All fields [model, name, phone, email] are required.'))
     }
 
-    const mailStatus = await sendMail({ model, name, phone, receipentEmail: email, address, message })
+    const mailStatus = await sendMail({ model, name, phone, receipentEmail: email, address, message, title: 'Thank You for Your Enquiry – We’ll Get Back to You Soon!' })
     if(!mailStatus.success){
         return res
             .status(mailStatus.statusCode || 500)

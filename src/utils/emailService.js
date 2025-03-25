@@ -45,11 +45,12 @@ const sendMail = async function(emailData){
         logger.info(`[${emailData?.receipentEmail}]`, responseData)
         return responseData
     } catch (error) {
-        console.log(error)
         const errorData = {
             name: error?.name || 'UNKNOWN',
-            statusCode: error?.status || error.response?.data?.code || 500,
-            message: error?.message || error.response?.data?.message || 'Something went wrong while sending email, please try again.',
+            statusCode: error?.status || 500,
+            message: error?.message || 'Something went wrong while sending email, please try again.',
+            brevoStatusCode: error.response?.data?.code || '',
+            brevoMessage: error.response?.data?.message || '',
             success: false
         }
         logger.error(emailData?.receipentEmail, errorData)
