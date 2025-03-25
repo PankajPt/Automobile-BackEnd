@@ -10,10 +10,10 @@ export default async function SendWhatsAppNotification(userDetails){
         const response = await client.messages.create({
         from: 'whatsapp:+14155238886',
         to: 'whatsapp:+918108300397',
-        body: `Enquiry received from [${userDetails.phone}]. Details - Name: ${userDetails.name}, Email: ${userDetails.email}, Address: ${userDetails.address}, Model: ${userDetails.model}.`
+        body: `Enquiry received from [${userDetails.phone}]. \nDetails-\n\tName: ${userDetails.name},\n\tEmail: ${userDetails.email},\n\tAddress: ${userDetails.address},\n\tModel: ${userDetails.model}.\n\t${userDetails.message}`
         })
 
-        logger.info(`Enquiry received from [${userDetails.phone}]. Details - Name: ${userDetails.name}, Email: ${userDetails.email}, Address: ${userDetails.address}, Model: ${userDetails.model}.`);
+        logger.info(`Enquiry received from [${userDetails.phone}]. \nDetails-\n\tName: ${userDetails.name},\n\tEmail: ${userDetails.email},\n\tAddress: ${userDetails.address},\n\tModel: ${userDetails.model}.\n\t${userDetails.message}`);
         return { success: true, messageId: response.sid };
     } catch (error) {
       logger.error(`WhatsApp Message Error:[${userDetails.phone}]`);
