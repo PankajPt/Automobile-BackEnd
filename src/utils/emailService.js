@@ -45,6 +45,7 @@ const sendMail = async function(emailData){
         logger.info(`[${emailData?.receipentEmail}]`, responseData)
         return responseData
     } catch (error) {
+        console.log(error)
         const errorData = {
             name: error?.name || 'UNKNOWN',
             statusCode: error?.status || error.response?.data?.code || 500,
