@@ -1,8 +1,9 @@
 import ApiResponse from "../utils/apiResponse.js"
 import ApiError from "../utils/apiError.js"
 import asyncHandler from "../utils/asyncHandler.js"
-import { logger } from "../utils/logger.js"
+import logger from "../utils/logger.js"
 import sendMail from "../utils/emailService.js"
+import SendWhatsAppNotification from "../utils/smsService.js"
 
 const submitEnquiryForm = asyncHandler(async (req, res) => {
     const { model, name, phone, email, address, message } = req.body
@@ -14,14 +15,6 @@ const submitEnquiryForm = asyncHandler(async (req, res) => {
             .json(new ApiError(400, 'All fields [model, name, phone, email] are required.'))
     }
 
-    // emailData obj expects: receipentEmail, name, title, body, route, randomKey
-    const mailData = {
-        name,
-        receipentEmail: email,
-        model,
-        address,
-        message
-    }
     const mailStatus = await sendMail({ model, name, phone, receipentEmail: email, address, message })
     if(!mailStatus.success){
         return res
@@ -30,6 +23,9 @@ const submitEnquiryForm = asyncHandler(async (req, res) => {
     }
 
     logger.info(`Enquiry submitted successfully for [${email}]`)
+
+    await SendWhatsAppNotification({ model, name, phone, email, address, message })
+
     return res
         .status(200)
         .json(new ApiResponse(200, mailStatus, 'Thank you for your enquiry. We have received your request and will get back to you soon.'))
@@ -49,7 +45,7 @@ const keepAlive = asyncHandler(async(req, res) => {
     logger.info(`[${new Date().toISOString()}] Heart_Beat_RES-[${SEQ_NUM}]: SENT OK`)    
     return res
         .status(200)
-        .json(new ApiResponse(200, { SEQ_NUM, status: 'OK' }, `${SEQ_NUM}: OK`))
+        .json(new ApiResponse(200, { SEQ_NUM, status: 'OK' }, `Server is up and running.`))
 })
 
 export {

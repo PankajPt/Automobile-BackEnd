@@ -44,4 +44,4 @@ const setLogLevel = (level) => {
 
 setLogLevel(process.env.LOG_LEVEL)
 
-export { logger }
+export default logger

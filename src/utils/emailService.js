@@ -1,7 +1,7 @@
 import { SENDER_NAME, BREVO_URI } from '../config/constants.js'
 import axios from 'axios'
 import getEmailTemplate from '../templates/enquiryResponse.template.js'
-import { logger } from './logger.js'
+import logger from './logger.js'
 // npm install axios
 
 const senderMail = process.env.AUTOMOBILE_EMAIL
