@@ -16,8 +16,11 @@ export default async function SendWhatsAppNotification(userDetails){
         logger.info(`Enquiry received from [${userDetails.phone}]. \nDetails-\n\tName: ${userDetails.name},\n\tEmail: ${userDetails.email},\n\tAddress: ${userDetails.address},\n\tModel: ${userDetails.model}.\n\t${userDetails.message}`);
         return { success: true, messageId: response.sid };
     } catch (error) {
-      logger.error(`WhatsApp Message Error:[${userDetails.phone}]`);
-      console.log(error)
+      const errorData = {
+        errorName: error?.name,
+        errorMessage: error?.message
+      }
+      logger.error(`WhatsApp Message Error:[${userDetails.phone}]`, errorData);
       return { success: false, error: error.message };
     }
 }

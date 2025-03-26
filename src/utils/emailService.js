@@ -48,12 +48,12 @@ const sendMail = async function(emailData){
         const errorData = {
             name: error?.name || 'UNKNOWN',
             statusCode: error?.status || 500,
-            message: error?.message || 'Something went wrong while sending email, please try again.',
+            errorMessage: error?.message || 'Something went wrong while sending email, please try again.',
             brevoStatusCode: error.response?.data?.code || '',
             brevoMessage: error.response?.data?.message || '',
             success: false
         }
-        logger.error(emailData?.receipentEmail, errorData)
+        logger.error(`[${emailData?.receipentEmail}]`, errorData)
         return errorData
     }
 }
