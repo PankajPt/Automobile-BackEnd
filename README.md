@@ -31,8 +31,8 @@ This is the **backend** service for the **Automobile** online booking system. It
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/sp-automobile-backend.git
-cd sp-automobile-backend
+https://github.com/PankajPt/Automobile-BackEnd.git
+cd Automobile-BackEnd
 ```
 
 ### 2. Install Dependencies
