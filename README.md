@@ -31,7 +31,7 @@ This is the **backend** service for the **Automobile** online booking system. It
 ### 1. Clone the Repository
 
 ```bash
-https://github.com/PankajPt/Automobile-BackEnd.git
+git clone https://github.com/PankajPt/Automobile-BackEnd.git
 cd Automobile-BackEnd
 ```
 
