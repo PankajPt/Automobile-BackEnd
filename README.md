@@ -42,6 +42,7 @@ npm install
 ```
 
 ### 3. Set Up Environment Variables
+
 ```env
 PORT=5000
 
@@ -97,18 +98,31 @@ node index.js
 ## 📁 Folder Structure
 
 ```
-sp-automobile-backend/
-├── controllers/
-│   └── bookingController.js     # Core booking logic
-├── routes/
-│   └── bookingRoutes.js         # API route handler
-├── utils/
-│   ├── mailer.js                # Nodemailer config
-│   └── smsSender.js             # Twilio SMS handler
-├── .env                         # Environment config
-├── index.js                     # Entry point
+Automobile-backend/
+├── src/
+│   ├── config/
+│   │   └── constants.js
+│   ├── controllers/
+│   │   └── user.controllers.js
+│   ├── routes/
+│   │   └── user.routes.js
+│   ├── templates/
+│   │   └── enquiryResponse.template.js
+│   ├── utils/
+│   │   ├── apiError.js
+│   │   ├── apiResponse.js
+│   │   ├── asyncHandler.js
+│   │   ├── emailService.js
+│   │   ├── logger.js
+│   │   └── smsService.js
+├── .gitignore
+├── README.md
+├── app.js
+├── index.js
+├── keep.alive.sh
 ├── package.json
-└── README.md
+├── package-lock.json
+
 ```
 
 ## 🗃️ Dependencies
